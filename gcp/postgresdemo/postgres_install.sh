@@ -12,21 +12,30 @@ exec 1>/postgres_install_log.out 2>&1
 #Redirect stdout to file log.out then redirect stderr to stdout. Note that the order is important when you want them going to the same file. stdout must be redirected before stderr is redirected to stdout.
 
 sudo apt -y install curl ca-certificates gnupg
+echo "sudo apt -y install curl ca-certificates gnupg"
 
 curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg >/dev/null
+echo "curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg >/dev/null"
 
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+echo "sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'"
 
 sudo apt update
+echo "sudo apt update"
 
 sudo apt -y install postgresql-14 postgresql-contrib-14
+echo "sudo apt -y install postgresql-14 postgresql-contrib-14"
 
 cd /etc/init.d
+echo "cd /etc/init.d"
 
 sudo sh postgresql start
+echo "sudo sh postgresql start"
 
 #Create Table employee
 sudo -u postgres psql -c "CREATE TABLE IF NOT EXISTS public.employee ("Name" character varying COLLATE pg_catalog."default","EmpId" bigint NOT NULL DEFAULT 1, "Address" character varying COLLATE pg_catalog."default",CONSTRAINT employee_pkey PRIMARY KEY ("EmpId"))"
+echo "sudo -u postgres psql -c "CREATE TABLE IF NOT EXISTS public.employee ("Name" character varying COLLATE pg_catalog."default","EmpId" bigint NOT NULL DEFAULT 1, "Address" character varying COLLATE pg_catalog."default",CONSTRAINT employee_pkey PRIMARY KEY ("EmpId"))""
 
 #Set password for postgres user
 sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'admin'"
+echo "sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'admin'""

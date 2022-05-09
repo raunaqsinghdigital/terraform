@@ -32,7 +32,7 @@ resource "google_compute_instance" "instance-1" {
     preemptible         = "false"
   }
 
- metadata_startup_script = file("/home/rauni2000/terraform/gcp/postgresdemo/postgres_install.sh")
+  metadata_startup_script = file("/home/rauni2000/terraform/gcp/postgresdemo/postgres_install.sh")
 
   /** service_account {
     email  = "1031588193130-compute@developer.gserviceaccount.com"
