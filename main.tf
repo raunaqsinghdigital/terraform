@@ -9,4 +9,11 @@ terraform {
            name = "gcp-test-workspace"
          }
        }
+
+        required_providers {
+    google = {
+      source = "hashicorp/google"
+      version = "3.5.0"
+    }
+  }
      }
